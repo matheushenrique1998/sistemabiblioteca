@@ -77,8 +77,8 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `biblioteca`.`usuarios` (
   `id_usuario` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(100) NOT NULL,
-  `perfil_administrador` VARCHAR(60) NOT NULL,
-  `perfil_usuario` VARCHAR(20) NOT NULL,
+  'senha' varchar(100) not null,
+  `perfil` VARCHAR(60) NOT NULL,
   PRIMARY KEY (`id_usuario`))
 ENGINE = InnoDB;
 
