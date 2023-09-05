@@ -21,16 +21,17 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/controllers/UsuarioController.php";
         <?php
          $usuarioController =new UsuarioController();
          $usuarios = $usuarioController->listarUsuarios();
-         var_dump($usuarios);
+         //var_dump($usuarios);
+         foreach($usuarios as $user):
 
         ?>
 
 
             <tr>
-                <td>1</td>
-                <td>matheus</td>
-                <td>matheus@gmail.com</td>
-                <td>Usuários</td>
+                <td><?=$user->id_usuario ?></td>
+                <td><?=$user->nome ?></td>
+                <td><?=$user->email ?></td>
+                <td><?=$user->perfil ?></td>
                 <td>
                     <a href='#' class='btn btn-primary'>editar</a>
                     <a href='#' class='btn btn-danger'>excluir</a>
@@ -38,7 +39,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/controllers/UsuarioController.php";
                 </td>
             </tr>
 
-
+              <?php
+              endforeach;
+              ?>
         </tbody>
 
     </table>
