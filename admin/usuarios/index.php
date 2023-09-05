@@ -20,6 +20,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/controllers/UsuarioController.php";
 
         <?php
          $usuarioController =new UsuarioController();
+         $usuarios = $usuarioController->listarUsuarios();
+         var_dump($usuarios);
 
         ?>
 

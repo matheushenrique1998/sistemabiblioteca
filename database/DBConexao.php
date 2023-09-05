@@ -3,7 +3,7 @@
 class DBConexao{
     //configurações do banco de dados
     private $host = "localhost";
-    private $dbname = "bibilioteca";
+    private $dbname = "biblioteca";
     private $username = "root";
     private $password = "senac2023";
  
@@ -13,7 +13,7 @@ class DBConexao{
     {
         Try{
             //inicializar a conexão
-            $this->conx = new PDO("msql:host=$this->host,dbname=$this->dbname,charset=utf8",$this->username,$this->password);
+            $this->conx = new PDO("mysql:host=$this->host;dbname=$this->dbname;charset=utf8",$this->username,$this->password);
             $this->conx->setattribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
         }catch(PDOException $e){
            //capturar o erro da conexão
