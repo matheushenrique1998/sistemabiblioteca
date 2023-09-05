@@ -1,6 +1,7 @@
 <?php
 
 require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/cabecalho.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/controllers/UsuarioController.php";
 
 ?>
 <main class="container mt-3 mb-3">
@@ -16,6 +17,13 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/cabecalho.php";
             </tr>
         </thead>
         <tbody>
+
+        <?php
+         $usuarioController =new UsuarioController();
+
+        ?>
+
+
             <tr>
                 <td>1</td>
                 <td>matheus</td>
@@ -27,6 +35,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/cabecalho.php";
 
                 </td>
             </tr>
+
+
         </tbody>
 
     </table>

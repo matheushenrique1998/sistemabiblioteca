@@ -1,4 +1,5 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'] . "/database/DBConexao.php";
 class Usuario{
     protected $db;
     protected $table = "usuarios";
