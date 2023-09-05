@@ -8,4 +8,7 @@ class UsuarioController{
     
  }
  
+ public function listarUsuarios(){
+    return $this->usuarioModel->listar();
+ }
 }
