@@ -5,7 +5,9 @@
 ?>
     <main class="container mt-3 mb-3">
         <h1>Área administrativa</h1>
-        <?php
+       
+        </main>
+<?php
 
 require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/rodape.php";
 
