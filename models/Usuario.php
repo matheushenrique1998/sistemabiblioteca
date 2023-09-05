@@ -48,9 +48,38 @@ class Usuario
 
      */
 
-    public function listar()
+    public function listar($id)
 
     {
+        try{
+            $sql= "select * from {$this->table} where id_usuario = id";
+            $stmt = $this->db->prepare($sql);
+        }catch(PDOException $e){
+            ECHO "erro na preparação da consulta:".$e->getMessage();
+           
+        }
+        
+        $stmt->bindParam(':id_usuario',[$id]); 
+        try{
+            $stmt->execute();
+            $aluno = $stmt->fetch(PDO::FETCH_ASSOC);
+            if($aluno){
+                echo "id:".$aluno['id']."<br>";
+                echo "nome:".$aluno['nome']."<br>";
+               echo "email:".$aluno['email']."<br>";
+               
+            }
+        
+
+    }catch (PDOException $e){
+
+ 
+
+        echo"erro na insercao:".$e->getMessage();
+
+
+
+    }
 
     }
 
@@ -241,8 +270,17 @@ class Usuario
     public function excluir($id)
 
     {
-
+        try{
+            $sql="delete from {$this->table} where id_usuario = :id";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindParam(':id, $id_usuario,PDO::PARAM_INT');
+            $stmt->execute();
+            echo "execluir bem-sucedida!";
+        }catch(PDOException $e){
+            echo "erro na execluir: ".$e->getMessage();
+        }
     }
+    
 
 }
 
