@@ -1,39 +1,44 @@
 <?php
 
 require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/cabecalho.php";
-require_once $_SERVER['DOCUMENT_ROOT'] . "/controllers/UsuarioController.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/controllers/alunoController.php";
 
 ?>
 <main class="container mt-3 mb-3">
-    <h1>lista de Usuários</h1>
+    <h1>lista de aluno</h1>
     <table class="table table-striped">
         <thead>
             <tr>
             <th>#</th>
-                <th>Nom</th>
+                <th>Nome</th>
+                <th>cpf</th>
                 <th>E-mail</th>
-                <th>Perfil</th>
-                <th>#</th>
-                
+                <th>telefone</th>
+                <th>celular</th>
+                <th>data_nascimento</th>
                 <th style="width :200px;">Ação</th>
             </tr>
         </thead>
         <tbody>
 
         <?php
-         $usuarioController =new usuarioController();
-         $usuarios = $usuarioController->listarUsuarios();
+         $alunoController =new alunoController();
+         $alunos = $alunoController->listaralunos();
          //var_dump($usuarios);
-         foreach($usuarios as $user):
+         foreach($alunos as $alunos):
 
         ?>
 
 
             <tr>
-            <td><?=$user->id_usuario ?></td>
-                <td><?=$user->nome ?></td>
-                <td><?=$user->email ?></td>
-                <td><?=$user->perfil ?></td>
+            <td><?=$alunos->id_aluno?></td>
+                <td><?=$alunos->nome ?></td>
+                <td><?=$alunos->cpf ?></td>
+                <td><?=$alunos->email ?></td>
+                <td><?=$alunos->telefone?></td>
+                <td><?=$alunos->celular?></td>
+                <td><?=$alunos->data_nascimento ?></td>
+                
                 <td>
                     <a href='#' class='btn btn-primary'>editar</a>
                     <a href='#' class='btn btn-danger'>excluir</a>
@@ -52,6 +57,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/controllers/UsuarioController.php";
 
 </main>
 <?php
+
 
 require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/rodape.php";
 
