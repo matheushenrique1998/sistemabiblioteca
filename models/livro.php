@@ -1,8 +1,8 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/database/DBConexao.php";
-class aluno{
+class livro{
     protected $db;
-    protected $table = "alunos";
+    protected $table = "livros";
     public function __construct()
     {
         $this->db = DBConexao::getConexao();
@@ -36,14 +36,14 @@ class aluno{
     
     public function cadastrar($dados){
         try {
-            $query = "INSERT INTO {$this->table} (nome, cpf, email, telefone, celular , data_nascimento VALUES (:nome,  :cpf, :email, :telefone, :celular ,:data_nascimento)";
+            $query = "INSERT INTO {$this->table} (  titulo, autor, numero_pagina,  perco, isbn, ano_publicacao) VALUES (:titulo, :autor,:numero_pagina, :perco, :isbn )";
             $stmt = $this->db->prepare($query);
-            $stmt->bindParam(':nome', $dados['nome']);
-            $stmt->bindParam(':cpf', $dados['cpf']);
-            $stmt->bindParam(':email', $dados['email']);
-            $stmt->bindParam(':telefone', $dados['telefone']);
-            $stmt->bindParam(':celular', $dados['celular']);
-            $stmt->bindParam(':data_nascimento', $dados['data_nascimento']);
+            $stmt->bindParam(':titulo', $dados[' titulo']);
+            $stmt->bindParam(':autor', $dados['autor']);
+            $stmt->bindParam(':numero_pagina', $dados['numero_pagina']);
+            $stmt->bindParam(':perco', $dados[' perco']);
+            $stmt->bindParam(':isbn', $dados['isbn']);
+            $stmt->bindParam(':ano_publicacao', $dados['ano_publicacao']);
             $stmt->execute();
             return true;
         } catch (PDOException $e) {
@@ -54,11 +54,14 @@ class aluno{
    
     public function editar($id, $dados){
         try {
-            $sql = "UPDATE {$this->table} SET nome = :nome, email = :email, telefone = :telefone celular= :celular WHERE id = :id";
+            $sql = "UPDATE {$this->table} SET titulo = :titulo , autor = :autor , numero_pagina = :numero_pagina , perco= :perco , isbn=:isbn , ano_publicacao=:ano_publicacao  WHERE id = :id";
             $stmt = $this->db->prepare($sql);
-            $stmt->bindParam(':email', $dados['email']);
-            $stmt->bindParam(':telefone', $dados['telefone']);
-            $stmt->bindParam(':celular', $dados['celular']);
+            $stmt->bindParam(':titulo', $dados['titulo']);
+            $stmt->bindParam(':autor', $dados['autor']);
+            $stmt->bindParam(':numero_pagina', $dados['numero_pagina']);
+            $stmt->bindParam(':perco', $dados['perco']);
+            $stmt->bindParam(':isbn', $dados['isbn']);
+            $stmt->bindParam(':ano_publicacao', $dados['ano_publicacao']);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
             return true;
