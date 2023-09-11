@@ -5,7 +5,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/controllers/AlunoController.php";
 
 ?>
 <main class="container mt-3 mb-3">
-    <h1>lista de aluno</h1>
+    <h1>lista de aluno <h1>
     <table class="table table-striped">
         <thead>
             <tr>
