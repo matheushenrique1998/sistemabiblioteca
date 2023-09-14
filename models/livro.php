@@ -8,11 +8,11 @@ class livro{
         $this->db = DBConexao::getConexao();
     }
    
-    public function buscar($id){
+    public function buscar($id_livro){
         try{
             $sql = "SELECT * FROM {$this->table} WHERE id=:id";
             $stmt = $this->db->prepare($sql);
-            $stmt->bindParam(":id",$id, PDO::PARAM_INT);
+            $stmt->bindParam(":id_livro",$id_livro, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetch(PDO::FETCH_OBJ);            
         }catch(PDOException $e)
@@ -52,9 +52,9 @@ class livro{
         }
     }
    
-    public function editar($id, $dados){
+    public function editar($id_livro, $dados){
         try {
-            $sql = "UPDATE {$this->table} SET titulo = :titulo , autor = :autor , numero_pagina = :numero_pagina , perco= :perco , isbn=:isbn , ano_publicacao=:ano_publicacao  WHERE id = :id";
+            $sql = "UPDATE {$this->table} SET titulo = :titulo , autor = :autor , numero_pagina = :numero_pagina , perco= :perco , isbn=:isbn , ano_publicacao=:ano_publicacao  WHERE id_livro = :id_livro";
             $stmt = $this->db->prepare($sql);
             $stmt->bindParam(':titulo', $dados['titulo']);
             $stmt->bindParam(':autor', $dados['autor']);
@@ -62,7 +62,7 @@ class livro{
             $stmt->bindParam(':perco', $dados['perco']);
             $stmt->bindParam(':isbn', $dados['isbn']);
             $stmt->bindParam(':ano_publicacao', $dados['ano_publicacao']);
-            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->bindParam(':id', $id_livro, PDO::PARAM_INT);
             $stmt->execute();
             return true;
         } catch (PDOException $e) {
@@ -71,11 +71,11 @@ class livro{
         }
     }
   
-    public function excluir($id){
+    public function excluir($id_livro){
         try {
-            $sql = "DELETE FROM {$this->table} WHERE id = :id";
+            $sql = "DELETE FROM {$this->table} WHERE id_livro = :id_livro";
             $stmt = $this->db->prepare($sql);
-            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->bindParam(':id_livro', $id_livro, PDO::PARAM_INT);
             $stmt->execute();
             return true;
         } catch (PDOException $e) {

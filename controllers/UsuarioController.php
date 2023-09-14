@@ -25,20 +25,34 @@ public function cadastrarUsuario(){
       exit;
    }
 }
-public function ediatarUsuraio(){
-   $id=$_GET['id'];
+public function editarUsuraio(){
+   $id_usuario =$_GET['id_usuario'];
    if($_SERVER['REQUEST_METHOD']== 'POST'){
+     if(isset($_POST['senha'])&& !empty($_POST['senha'])){
+      //criar nova senha
+      $senha = password_hash($_POST['senha'],PASSWORD_DEFAULT);
+     }else{
+      //manter senha antiga
+      $usuario= $this->usuarioModel->buscar($id_usuario);
+      $senha= $usuario->senha;
+
+     }
       $dados=[
          'nome'=> $_POST['nome'],
          'email'=>$_POST['email'],
          'senha'=> password_hash ($_POST['senha'],PASSWORD_DEFAULT),
          'perfil'=>$_POST['perfil']
       ];
-      $this->usuarioModel->editar($id,$dados);
+      $this->usuarioModel->editar($id_usuario,$dados);
       header('location: index.php');
       exit;
    }
 
-   return $this->usuarioModel->buscar($id);
+   return $this->usuarioModel->buscar($id_usuario);
+}
+public function excluirUsuario(){
+   $this->usuarioModel->excluir($_GET['id_usuario']);
+   header('location: index.php');
+   exit;
 }
 }

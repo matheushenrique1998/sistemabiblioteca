@@ -3,11 +3,16 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/cabecalho.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/controllers/UsuarioController.php";
 
+if(isset($_GET['del'])&& !empty($_GET['id_usuario'])){
+   
+    $usuarioController= new usuarioController();
+    $usuarioController->excluirUsuario();
+}
 ?>
 <main class="container mt-3 mb-3">
-    <h1>a lista de Usuários <a href="cadastrar.php" class="btn btn-primary float-end">cadastrar</a>
+    <h1> lista de Usuários <a href="cadastrar.php" class="btn btn-primary float-end">cadastrar</a></h1>
     <<?php require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/alerta.php"; ?>
-    </h1>
+    
     <table class="table table-striped">
         <thead>
             <tr>
@@ -37,8 +42,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/controllers/UsuarioController.php";
                 <td><?=$user->email ?></td>
                 <td><?=$user->perfil ?></td>
                 <td>
-                    <a href="editar.php?id=<?=$user->id_usuario ?>" class='btn btn-primary'>editar</a>
-                    <a href='#' class='btn btn-danger'>excluir</a>
+                    <a href="editar.php?id_usuario=<?=$user->id_usuario ?>" class='btn btn-primary'>editar</a>
+                    <a href="index.php?id_usuario=<?=$user->id_usuario?>&del"class='btn btn-danger'>excluir</a>
+
 
                 </td>
             </tr>

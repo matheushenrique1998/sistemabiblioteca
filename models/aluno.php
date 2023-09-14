@@ -8,11 +8,11 @@ class aluno{
         $this->db = DBConexao::getConexao();
     }
    
-    public function buscar($id){
+    public function buscar($id_aluno){
         try{
-            $sql = "SELECT * FROM {$this->table} WHERE id=:id";
+            $sql = "SELECT * FROM {$this->table} WHERE id_aluno=:id_aluno";
             $stmt = $this->db->prepare($sql);
-            $stmt->bindParam(":id",$id, PDO::PARAM_INT);
+            $stmt->bindParam(":id_aluno",$id_aluno, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetch(PDO::FETCH_OBJ);            
         }catch(PDOException $e)
@@ -52,14 +52,14 @@ class aluno{
         }
     }
    
-    public function editar($id, $dados){
+    public function editar($id_aluno, $dados){
         try {
-            $sql = "UPDATE {$this->table} SET nome = :nome, email = :email, telefone = :telefone celular= :celular WHERE id = :id";
+            $sql = "UPDATE {$this->table} SET nome = :nome, email = :email, telefone = :telefone celular= :celular WHERE id_aluno = :id_aluno";
             $stmt = $this->db->prepare($sql);
             $stmt->bindParam(':email', $dados['email']);
             $stmt->bindParam(':telefone', $dados['telefone']);
             $stmt->bindParam(':celular', $dados['celular']);
-            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->bindParam(':id_aluno', $id_aluno, PDO::PARAM_INT);
             $stmt->execute();
             return true;
         } catch (PDOException $e) {
@@ -68,11 +68,11 @@ class aluno{
         }
     }
   
-    public function excluir($id){
+    public function excluir($id_aluno){
         try {
-            $sql = "DELETE FROM {$this->table} WHERE id = :id";
+            $sql = "DELETE FROM {$this->table} WHERE id_aluno = :id_aluno";
             $stmt = $this->db->prepare($sql);
-            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->bindParam(':id_aluno', $id_aluno , PDO::PARAM_INT);
             $stmt->execute();
             return true;
         } catch (PDOException $e) {
