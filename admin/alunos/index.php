@@ -9,7 +9,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/controllers/AlunoController.php";
     <table class="table table-striped">
         <thead>
             <tr>
-            <th>#</th>
+            <th>ID</th>
                 <th>Nome</th>
                 <th>cpf</th>
                 <th>E-mail</th>
