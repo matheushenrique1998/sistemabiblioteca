@@ -16,7 +16,7 @@ if(isset($_GET['del'])&& !empty($_GET['id_usuario'])){
     <table class="table table-striped">
         <thead>
             <tr>
-            <th>#</th>
+            <th>ID</th>
                 <th>Nom</th>
                 <th>E-mail</th>
                 <th>Perfil</th>
